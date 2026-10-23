@@ -1173,6 +1173,7 @@ function showMenu(){
     <button class="big alt" id="tW3" style="font-size:18px">🌙 Hautausmaalle</button>
     <button class="big alt" id="tW4" style="font-size:18px">⛏️ Kääpiöluolaan</button>
     <button class="big alt" id="tW5" style="font-size:18px">🎣 Kalajärvelle</button>
+    <button class="big alt" id="tWep" style="font-size:18px">⚒️ Kääpiöiden aseet valmiiksi</button>
     <button class="big alt" id="tSk" style="font-size:18px">💀 Luuranko kaivaa heti</button><br>
     <button class="big" id="cont">Jatka</button><br>
     <button class="big alt" id="pickN2" style="background:#8b5cf6;box-shadow:0 5px 0 #4c2a9a">🔤 Vaihda hahmot</button><br>
@@ -1185,6 +1186,11 @@ function showMenu(){
   if($('fishBack'))$('fishBack').onclick=()=>{closeOv();leaveLake();};
   $('tP').onclick=()=>{PARTS.forEach(it=>store[it]=(store[it]||0)+5);save();sBuy();};
   $('tM').onclick=()=>{money+=500;renderHUD();save();sBuy();};
+  $('tWep').onclick=()=>{closeOv();golden=true;car.r1=1;car.r2=1;if(world!==3){enterCave();closeOv();}
+    if(king&&smith){smith.step=RECIPES.length;smith.got={};smith.ready=[];king.got=RECIPES.map((r,i)=>i<RECIPES.length-1);king.done=false;king.war=null;king.boat=false;king.boatAt=null;
+      const c=act(),crown=RECIPES[RECIPES.length-1].it;if(!c.bag.includes(crown)){if(c.bag.length>=cap(c))c.bag.pop();c.bag.push(crown);}
+      c.x=c.sx=KING_X;c.y=c.sy=CAVE_Y;c.busy=false;c.falling=false;cam.init=false;
+      floats.push({x:KING_X+0.5,y:CAVE_Y-2,text:'Aseet valmiina! Anna kruunu kuninkaalle 👑',life:3000,max:3000,c:'#ffd23f'});sBuy();renderHUD();save();}};
   $('tW5').onclick=()=>{closeOv();golden=true;car.r1=1;car.r2=1;if(world!==3){enterCave();closeOv();}if(king){king.done=true;king.boat=true;}enterLake();};
   $('tW4').onclick=()=>{closeOv();golden=true;car.r1=1;car.r2=1;enterCave();};
   $('tW3').onclick=()=>{closeOv();golden=true;car.r1=1;arriveWorld3();};
